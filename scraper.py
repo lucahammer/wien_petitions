@@ -14,9 +14,9 @@ for page in testing:
 
 # # Find something on the page using css selectors
 root = lxml.html.fromstring(html)
-#root.cssselect("div[align='left']")
-test = root.xpath('//tr/td[last()-1]')
-for item in test:
+results = root.cssselect("td[width=70%]")
+#test = root.xpath('//tr/td[last()-1]')
+for item in results
   prntabl = item.text.encode('ascii', 'ignore')
   print (prntabl)
 #
