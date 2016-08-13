@@ -17,6 +17,7 @@ for page in testing:
   root = lxml.html.fromstring(html)
   results = root.cssselect("td[colspan='2']")
   #test = root.xpath('//tr/td[last()-1]')
+  scraperwiki.sqlite.save(data={'0': "https://www.wien.gv.at/petition/online/"+page})
   for item in results:
     style = item.attrib['style']
     counter += 1
