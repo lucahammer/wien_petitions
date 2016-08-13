@@ -19,7 +19,6 @@ for page in testing:
   #test = root.xpath('//tr/td[last()-1]')
   scraperwiki.sqlite.save(unique_keys=['0'], data={'0': "https://www.wien.gv.at/petition/online/"+page})
   for item in results:
-    style = item.attrib['style']
     counter += 1
     data = item.text_content()
     row = str(counter)
