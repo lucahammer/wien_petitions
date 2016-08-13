@@ -9,7 +9,7 @@ import scraperwiki
 import lxml.html
 
 # # Read in a page
-for page in zip(active, ended):
+for page in active:
   collection = {'0': "https://www.wien.gv.at/petition/online/"+page}
   print ("scraping: "+page)
   counter = 0
@@ -27,7 +27,23 @@ for page in zip(active, ended):
     #print (row +" "+ prntabl)
   scraperwiki.sqlite.save(unique_keys=['0'], data=collection)
 
-  
+for page in ended:
+  collection = {'0': "https://www.wien.gv.at/petition/online/"+page}
+  print ("scraping: "+page)
+  counter = 0
+  html = scraperwiki.scrape("https://www.wien.gv.at/petition/online/"+page)
+  # # Find something on the page using css selectors
+  root = lxml.html.fromstring(html)
+  results = root.cssselect("td[colspan='2']")
+  #test = root.xpath('//tr/td[last()-1]')
+  for item in results:
+    counter += 1
+    data = item.text_content()
+    row = str(counter)
+    collection[row] = data
+    #prntabl = data.encode('ascii', 'ignore')
+    #print (row +" "+ prntabl)
+  scraperwiki.sqlite.save(unique_keys=['0'], data=collection)
 
 #
 # # Write out to the sqlite database using scraperwiki library
