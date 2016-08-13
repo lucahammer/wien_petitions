@@ -18,17 +18,14 @@ for page in testing:
   results = root.cssselect("td[colspan='2']")
   #test = root.xpath('//tr/td[last()-1]')
   for item in results:
-    try:
-      style = item.attrib['style']
-      if style == 'vertical-align:top;width:70%':
-        counter += 1
-        data = item.text_content()
-        row = str(counter)
-        scraperwiki.sqlite.save(data={row: data})
-        prntabl = data.encode('ascii', 'ignore')
-        print (row +" "+ prntabl)
-    except:
-      nix = 1+1
+    style = item.attrib['style']
+    counter += 1
+    data = item.text_content()
+    row = str(counter)
+    scraperwiki.sqlite.save(data={row: data})
+    prntabl = data.encode('ascii', 'ignore')
+    print (row +" "+ prntabl)
+
   
 
 #
