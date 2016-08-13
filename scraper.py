@@ -22,7 +22,7 @@ for page in testing:
     counter += 1
     data = item.text_content()
     row = str(counter)
-    collection[counter] = data
+    collection[row] = data
     #prntabl = data.encode('ascii', 'ignore')
     #print (row +" "+ prntabl)
   scraperwiki.sqlite.save(unique_keys=['0'], data=collection)
