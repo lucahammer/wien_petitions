@@ -24,11 +24,11 @@ for page in testing:
         counter += 1
         data = item.text_content()
         row = str(counter)
-        scraperwiki.sqlite.save(data={counter: data})
-        #prntabl = data.encode('ascii', 'ignore')
-        #print (prntabl)
+        scraperwiki.sqlite.save(data={row: data})
+        prntabl = data.encode('ascii', 'ignore')
+        print (row +" "+ prntabl)
     except:
-      print("")
+      nix = 1+1
   
 
 #
