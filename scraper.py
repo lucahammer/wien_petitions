@@ -17,13 +17,13 @@ for page in testing:
   root = lxml.html.fromstring(html)
   results = root.cssselect("td[colspan='2']")
   #test = root.xpath('//tr/td[last()-1]')
-  scraperwiki.sqlite.save(data={'0': "https://www.wien.gv.at/petition/online/"+page})
+  scraperwiki.sqlite.save(unique_keys=['0'], data={'0': "https://www.wien.gv.at/petition/online/"+page})
   for item in results:
     style = item.attrib['style']
     counter += 1
     data = item.text_content()
     row = str(counter)
-    scraperwiki.sqlite.save(data={row: data})
+    scraperwiki.sqlite.save(unique_keys=['0'], data={row: data})
     prntabl = data.encode('ascii', 'ignore')
     print (row +" "+ prntabl)
 
