@@ -19,7 +19,7 @@ results = root.cssselect("td[width='70%']")
 for item in results:
   #prntabl = item.encode('ascii', 'ignore')
   try:
-    print (item.text)
+    print (item.text_content())
   except:
     print ("Error")
 #
