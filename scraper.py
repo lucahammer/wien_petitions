@@ -10,6 +10,7 @@ import lxml.html
 
 # # Read in a page
 for page in testing:
+  print ("scraping: "+page)
   counter = 0
   html = scraperwiki.scrape("https://www.wien.gv.at/petition/online/"+page)
   # # Find something on the page using css selectors
