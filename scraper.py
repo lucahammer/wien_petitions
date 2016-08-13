@@ -25,7 +25,7 @@ for page in testing:
     collection[counter] = data
     #prntabl = data.encode('ascii', 'ignore')
     #print (row +" "+ prntabl)
-  scraperwiki.sqlite.save(unique_keys=['0'], collection)
+  scraperwiki.sqlite.save(unique_keys=['0'], data=collection)
 
   
 
