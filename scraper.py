@@ -10,21 +10,24 @@ import lxml.html
 
 # # Read in a page
 for page in testing:
+  counter = 0
   html = scraperwiki.scrape("https://www.wien.gv.at/petition/online/"+page)
-
-# # Find something on the page using css selectors
-root = lxml.html.fromstring(html)
-results = root.cssselect("td[colspan='2']")
-#test = root.xpath('//tr/td[last()-1]')
-for item in results:
-  try:
-    style = item.attrib['style']
-    if style == 'vertical-align:top;width:70%':
-      con = item.text_content()
-      prntabl = con.encode('ascii', 'ignore')
-      print (prntabl)
-  except:
-    print("")
+  # # Find something on the page using css selectors
+  root = lxml.html.fromstring(html)
+  results = root.cssselect("td[colspan='2']")
+  #test = root.xpath('//tr/td[last()-1]')
+  for item in results:
+    try:
+      style = item.attrib['style']
+      if style == 'vertical-align:top;width:70%':
+        counter += 1
+        data = item.text_content()
+        row = str(counter)
+        scraperwiki.sqlite.save(data={counter: data})
+        #prntabl = data.encode('ascii', 'ignore')
+        #print (prntabl)
+    except:
+      print("")
   
 
 #
