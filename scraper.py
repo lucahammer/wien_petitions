@@ -17,11 +17,14 @@ root = lxml.html.fromstring(html)
 results = root.cssselect("td[colspan='2']")
 #test = root.xpath('//tr/td[last()-1]')
 for item in results:
-  style = item.attrib['style']
-  if style == 'width:70%':
-    con = item.text_content()
-    prntabl = con.encode('ascii', 'ignore')
-    print (prntabl)
+  try:
+    style = item.attrib['style']
+    if style == 'vertical-align:top;width:70%':
+      con = item.text_content()
+      prntabl = con.encode('ascii', 'ignore')
+      print (prntabl)
+  except:
+    print("")
   
 
 #
