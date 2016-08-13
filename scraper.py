@@ -17,7 +17,8 @@ root = lxml.html.fromstring(html)
 #root.cssselect("div[align='left']")
 test = root.xpath('//tr/td[last()-1]')
 for item in test:
-  print (item.text)
+  prntabl = item.text.encode('ascii', 'ignore')
+  print (prntabl)
 #
 # # Write out to the sqlite database using scraperwiki library
 # scraperwiki.sqlite.save(unique_keys=['name'], data={"name": "susan", "occupation": "software developer"})
