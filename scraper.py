@@ -14,12 +14,15 @@ for page in testing:
 
 # # Find something on the page using css selectors
 root = lxml.html.fromstring(html)
-results = root.cssselect("td[width='70%']")
+results = root.cssselect("td[colspan='2']")
 #test = root.xpath('//tr/td[last()-1]')
 for item in results:
-  con = item.text_content()
-  prntabl = con.encode('ascii', 'ignore')
-  print (prntabl)
+  style = item.attrib['style']
+  if style == 'width:70%':
+    con = item.text_content()
+    prntabl = con.encode('ascii', 'ignore')
+    print (prntabl)
+  
 
 #
 # # Write out to the sqlite database using scraperwiki library
