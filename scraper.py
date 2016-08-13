@@ -17,8 +17,11 @@ root = lxml.html.fromstring(html)
 results = root.cssselect("td[width='70%']")
 #test = root.xpath('//tr/td[last()-1]')
 for item in results:
-  prntabl = item.encode('ascii', 'ignore')
-  print (prntabl)
+  #prntabl = item.encode('ascii', 'ignore')
+  try:
+    print (item.text)
+  except:
+    print ("Error")
 #
 # # Write out to the sqlite database using scraperwiki library
 # scraperwiki.sqlite.save(unique_keys=['name'], data={"name": "susan", "occupation": "software developer"})
